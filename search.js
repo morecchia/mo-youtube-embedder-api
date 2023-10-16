@@ -1,6 +1,8 @@
-import * as youtube from 'youtube-search-api';
+const youtube = require('youtube-search-api');
 
-export async function getList(keywords) {
+async function getList(keywords) {
     const list = await youtube.GetListByKeyword(keywords);
     return list && list.items;
 }
+
+module.exports = {getList};

@@ -1,6 +1,6 @@
-import express from "express";
-import cors from 'cors';
-import { getList } from "./search.js";
+const express = require('express');
+const cors = require('cors');
+const search = require('./search.js');
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.get("/search", async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=60, stale-while-revalidate');
   const term = req.query['term'];
-  const vids = term && await getList(term);
+  const vids = term && await search.getList(term);
   const filtered = vids && vids.filter(v => v.channelTitle);
   res.json(filtered || []);
 });
@@ -27,4 +27,4 @@ app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
 
-export const api = app;
+module.exports = app;
