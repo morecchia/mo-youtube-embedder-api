@@ -1,8 +1,9 @@
 import express from "express";
 import cors from 'cors';
-import { getList } from "../search.js";
+import { getList } from "./search.js";
 
 const app = express();
+
 const port = 3000;
 
 app.use(cors())
@@ -25,3 +26,5 @@ app.get("/search", async (req, res) => {
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
+
+export const api = app;
