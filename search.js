@@ -14,6 +14,11 @@ async function getDescription(videoId) {
   }
   
   const details = await youtube.GetVideoDetails(videoId);
+
+  if (details.hasOwnProperty('description')) {
+    return details;
+  }
+
   const contents = details && details.contents;
   const info = contents && contents.find(o => Object.keys(o).indexOf(videoInfoName) > -1)
   const description = info && info[videoInfoName][descriptionKeyName];
@@ -23,12 +28,4 @@ async function getDescription(videoId) {
   };
 }
 
-async function test(videoId) {
-  if (!videoId) {
-    return null;
-  }
-  
-  return await youtube.GetVideoDetails(videoId);
-}
-
-module.exports = {getList, getDescription, test};
+module.exports = {getList, getDescription};

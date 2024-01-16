@@ -28,14 +28,6 @@ app.get("/description/:videoId", async (req, res) => {
   res.json(video);
 });
 
-app.get("/test/:videoId", async (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.setHeader('Cache-Control', 's-max-age=60, stale-while-revalidate');
-  const { videoId } = req.params;
-  const video = await search.test(videoId);
-  res.json(video);
-});
-
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
