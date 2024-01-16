@@ -23,4 +23,12 @@ async function getDescription(videoId) {
   };
 }
 
-module.exports = {getList, getDescription};
+async function test(videoId) {
+  if (!videoId) {
+    return null;
+  }
+  
+  return await youtube.GetVideoDetails(videoId);
+}
+
+module.exports = {getList, getDescription, test};
